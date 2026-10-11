@@ -77,16 +77,32 @@ export default function AboutPage() {
         <FadeIn className="mx-auto max-w-2xl">
           <SectionHeading id="story">My Story</SectionHeading>
           {/*
-            ✏️ PLACEHOLDER: REWRITE "MY STORY" HERE
-            Replace the paragraph below with your own testimony.
-            Keep your words between <p ...> and </p>. To add another
-            paragraph, copy the whole <p>...</p> block and paste it underneath.
+            ✏️ MY STORY: edit your testimony here.
+            Each paragraph sits between <p ...> and </p>. To add another
+            paragraph, copy a whole <p>...</p> block and paste it underneath.
           */}
-          <p className="mt-8 text-lg leading-relaxed text-neutral-700">
-            This is where my story will be shared: how Jesus found me, how His
-            grace changed my life, and how He called me to tell His story
-            through voiceover and film. Whatever is written here, the point is
-            never me. It is all about Him, the One who saves.
+          <div className="mt-8 space-y-6 text-lg leading-relaxed text-neutral-700">
+            <p>
+              I was once deep in the world, living for myself and caught up in
+              gangsterism.
+            </p>
+            <p>
+              In 2021, I encountered Jesus Christ, and it changed everything. He
+              gave me a new heart, a new life and a new purpose.
+            </p>
+            <p>
+              Today, as His servant, my mission is to make Jesus known, so that
+              others can experience the same life and joy I have found in
+              Christ. If He could reach me, He can reach you.
+            </p>
+          </div>
+          <Scripture
+            text="Therefore if any man be in Christ, he is a new creature: old things are passed away; behold, all things are become new."
+            reference="2 Corinthians 5:17"
+            className="mt-12 text-center"
+          />
+          <p className="mt-12 text-right font-serif text-xl text-neutral-800 italic">
+            Victor Nnamdi, your brother in Christ
           </p>
         </FadeIn>
       </section>

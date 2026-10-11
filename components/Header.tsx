@@ -11,7 +11,7 @@ export default function Header() {
           href="/"
           className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
         >
-          <Logo size={40} priority />
+          <Logo size={36} variant="icon" priority />
           <span className="font-serif text-lg tracking-wide text-neutral-900">
             {siteConfig.name}
           </span>

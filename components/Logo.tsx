@@ -4,33 +4,65 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 
 type LogoProps = {
-  /** Width and height in pixels */
+  /** Height in pixels (the width follows the image's shape) */
   size: number;
+  /** "full" = full logo, "icon" = cross-only icon (used in the navigation bar) */
+  variant?: "full" | "icon";
+  /** Use "light" on dark backgrounds to show the white logo */
+  tone?: "dark" | "light";
   priority?: boolean;
 };
 
-/**
- * Shows your logo from /public/logo.png.
- * If that file does not exist yet, a simple placeholder (circle, cross and "VE") is shown.
- */
-export default function Logo({ size, priority = false }: LogoProps) {
-  const hasLogo = fs.existsSync(path.join(process.cwd(), "public", "logo.png"));
+function publicFileExists(file: string) {
+  return fs.existsSync(path.join(process.cwd(), "public", file));
+}
 
-  if (hasLogo) {
+/** Reads a PNG's real width and height so the logo keeps its shape. */
+function pngSize(file: string): { width: number; height: number } {
+  const header = Buffer.alloc(24);
+  const fd = fs.openSync(path.join(process.cwd(), "public", file), "r");
+  try {
+    fs.readSync(fd, header, 0, 24, 0);
+  } finally {
+    fs.closeSync(fd);
+  }
+  return { width: header.readUInt32BE(16), height: header.readUInt32BE(20) };
+}
+
+/**
+ * Shows your logo from the /public folder:
+ *   logo.png        full logo, black (for white backgrounds)
+ *   logo-white.png  full logo, white (for dark backgrounds)
+ *   icon.png        cross only (used in the navigation bar)
+ * If a file is missing, the next best one is used, and if none exist a simple
+ * placeholder (circle, cross and "VE") is shown.
+ */
+export default function Logo({
+  size,
+  variant = "full",
+  tone = "dark",
+  priority = false,
+}: LogoProps) {
+  const fullLogo = tone === "light" ? "logo-white.png" : "logo.png";
+  const candidates =
+    variant === "icon" && tone === "dark"
+      ? ["icon.png", fullLogo]
+      : [fullLogo];
+  const file = candidates.find(publicFileExists);
+
+  if (file) {
+    const { width, height } = pngSize(file);
     return (
-      <span
-        className="relative block shrink-0"
-        style={{ width: size, height: size }}
-      >
-        <Image
-          src="/logo.png"
-          alt={`${siteConfig.name} logo`}
-          fill
-          sizes={`${size}px`}
-          priority={priority}
-          className="object-contain"
-        />
-      </span>
+      <Image
+        src={`/${file}`}
+        alt={`${siteConfig.name} logo`}
+        width={width}
+        height={height}
+        priority={priority}
+        sizes={`${Math.ceil((size * width) / height) * 2}px`}
+        className="w-auto shrink-0 object-contain"
+        style={{ height: size, maxWidth: "100%" }}
+      />
     );
   }
 
@@ -45,7 +77,7 @@ function LogoPlaceholder({ size }: { size: number }) {
       viewBox="0 0 100 100"
       role="img"
       aria-label={`${siteConfig.name} logo`}
-      className="shrink-0 text-neutral-900"
+      className="shrink-0 text-current"
     >
       <circle
         cx="50"
