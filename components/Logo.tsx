@@ -33,7 +33,7 @@ function pngSize(file: string): { width: number; height: number } {
  * Shows your logo from the /public folder:
  *   logo.png        full logo, black (for white backgrounds)
  *   logo-white.png  full logo, white (for dark backgrounds)
- *   icon.png        cross only (used in the navigation bar)
+ *   logo-icon.png   cross only (used in the navigation bar)
  * If a file is missing, the next best one is used, and if none exist a simple
  * placeholder (circle, cross and "VE") is shown.
  */
@@ -46,7 +46,7 @@ export default function Logo({
   const fullLogo = tone === "light" ? "logo-white.png" : "logo.png";
   const candidates =
     variant === "icon" && tone === "dark"
-      ? ["icon.png", fullLogo]
+      ? ["logo-icon.png", fullLogo]
       : [fullLogo];
   const file = candidates.find(publicFileExists);
 

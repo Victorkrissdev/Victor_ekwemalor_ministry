@@ -68,26 +68,18 @@ Your email and phone disappear from the Contact page. The contact form keeps wor
 
 ---
 
-## 4. Adding your logo
+## 4. Your logo and icons
 
-1. Save your logo as a **PNG** file named exactly `logo.png` (all lowercase).
-   A square image works best, ideally at least 500 × 500 pixels with a transparent or white background.
-2. Put it in the `public` folder, so the path is `public/logo.png`.
-3. Restart the site (`Ctrl + C`, then `npm run dev`).
+| File | What it is | Where it shows |
+| ---- | ---------- | -------------- |
+| `public/logo.png` | Full logo, black, transparent background | Large at the top of the Home page |
+| `public/logo-white.png` | Full logo, white, transparent background | For any dark sections |
+| `public/logo-icon.png` | Cross only, transparent background | Navigation bar (top-left) |
+| `app/icon.png` | Cross on white, 512 × 512 | Browser tab (favicon) |
+| `app/apple-icon.png` | Cross on white, 180 × 180 | iPhone home-screen icon |
+| `assets/original-logo.png` | Your original logo file | Not shown on the site (kept as the master copy) |
 
-It now appears in the top-left of every page and large on the Home page. Until you add it, a simple placeholder (a circle with a thin cross and "VE") is shown.
-
-**To replace the logo later:** overwrite `public/logo.png` with the new file (same name).
-
-### The favicon (small icon in the browser tab)
-
-The current tab icon is `app/icon.svg` (the "VE" placeholder). To use your logo instead:
-
-1. Make a square PNG of your logo (512 × 512 pixels is ideal).
-2. Name it `icon.png` and put it in the `app` folder.
-3. Delete `app/icon.svg`.
-
-Optional: also add a copy named `apple-icon.png` (180 × 180) in the `app` folder for iPhone home-screen bookmarks.
+**To replace any of them:** save the new image with exactly the same name in the same folder (overwrite the old one), then commit and push. Keep names lowercase. If a logo file is missing, the site falls back to a simple "VE" placeholder.
 
 ---
 
@@ -163,12 +155,12 @@ app/
   contact/page.tsx      Contact page
   api/contact/route.ts  Sends contact form emails
   layout.tsx            Shared layout (navigation, footer, page titles)
-  icon.svg              Browser tab icon
+  icon.png, apple-icon.png  Browser tab and iPhone icons
   opengraph-image.tsx   Preview image when the link is shared
   robots.ts, sitemap.ts For search engines
 components/             Reusable pieces (logo, navigation, footer, cross, form)
 lib/site-config.ts      ⭐ Your settings: edit this one
-public/                 Put logo.png here
+public/                 Logo images (logo.png, logo-white.png, logo-icon.png)
 ```
 
 To God be the glory. #EyesOnJesus

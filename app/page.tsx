@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="px-6 pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
         <div className="mx-auto flex max-w-3xl flex-col items-center">
           <div className="fade-in">
-            <Logo size={160} priority />
+            <Logo size={180} priority />
           </div>
           <h1 className="fade-in fade-in-delay-1 mt-10 font-serif text-4xl leading-tight font-medium text-balance text-neutral-900 sm:text-6xl">
             {siteConfig.motto}

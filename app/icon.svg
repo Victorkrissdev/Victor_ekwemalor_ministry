@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="48" fill="#ffffff" stroke="#171717" stroke-width="3"/>
-  <g stroke="#171717" stroke-width="3" stroke-linecap="round">
-    <line x1="50" y1="14" x2="50" y2="46"/>
-    <line x1="40" y1="24" x2="60" y2="24"/>
-  </g>
-  <text x="50" y="78" text-anchor="middle" fill="#171717" font-family="Georgia, 'Times New Roman', serif" font-size="28" letter-spacing="2">VE</text>
-</svg>
